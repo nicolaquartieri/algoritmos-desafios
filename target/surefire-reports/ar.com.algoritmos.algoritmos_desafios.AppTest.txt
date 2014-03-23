@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: ar.com.algoritmos.algoritmos_desafios.AppTest
+-------------------------------------------------------------------------------
+Tests run: 13, Failures: 0, Errors: 0, Skipped: 2, Time elapsed: 0.139 sec
