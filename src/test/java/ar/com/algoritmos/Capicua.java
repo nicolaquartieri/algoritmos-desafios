@@ -23,7 +23,7 @@ public class Capicua {
 		return seguirProbando;
 	}
 
-	public static String reverse(String palabra) {				
+	public static String reverse(String palabra) {
 		String[] lista = palabra.split(" ");
 		StringBuffer resultado = new StringBuffer();
 		
