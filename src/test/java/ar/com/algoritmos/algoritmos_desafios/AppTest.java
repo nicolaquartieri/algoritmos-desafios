@@ -10,6 +10,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import junit.framework.Assert;
+
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -18,9 +20,10 @@ import ar.com.algoritmos.Colleciones;
 import ar.com.algoritmos.ListNode;
 import ar.com.algoritmos.Node;
 import ar.com.algoritmos.Numeros;
-import ar.com.algoritmos.Stuff;
 import ar.com.algoritmos.Numeros.Change;
+import ar.com.algoritmos.algoritmos.Nodo;
 import ar.com.algoritmos.Primos;
+import ar.com.algoritmos.Stuff;
 
 /**
  * Unit test for simple App.
@@ -177,9 +180,54 @@ public class AppTest
 		assertTrue(2 == resultado);
 	}
 	
+	@SuppressWarnings("deprecation")
+	@Test
+	public void arbolBinarioCrearNodo() {
+		// Arrange
+		Nodo nodo = null;
+		
+		// Act
+		nodo = Nodo.crear(null, 1, "valor");
+		
+		// Assert
+		Assert.assertTrue( nodo != null ); 
+		Assert.assertTrue( nodo.getRaiz() == 1 ); 
+		Assert.assertTrue( nodo.getContenido().equalsIgnoreCase("valor") );
+	}
+	
+	@SuppressWarnings("deprecation")
+	@Test
+	public void arbolBinarioInsertarNodo() {
+		// Arrange
+		Nodo nodoRaiz = Nodo.crear(null, 1, "valor1");;
+		Nodo nodoHijo = null;
+		
+		// Act
+		nodoRaiz = Nodo.crear(nodoHijo, 2, "valor2");
+		
+		// Assert
+		Assert.assertTrue( nodoRaiz.getNodoDer() != null );
+		Assert.assertTrue( nodoRaiz.getNodoDer().getRaiz() == 2 ); 
+		Assert.assertTrue( nodoRaiz.getNodoDer().getContenido().equalsIgnoreCase("valor") );
+	}
+	
+	@Test
+	@Ignore
+	public void arbolBinarioBuscar() {
+		// Arrange
+		
+		// Act
+		
+		// Assert
+	}
+	
 	@Test
 	@Ignore
 	public void test() {
+		// Arrange
 		
+		// Act
+		
+		// Assert		
 	}
 }
