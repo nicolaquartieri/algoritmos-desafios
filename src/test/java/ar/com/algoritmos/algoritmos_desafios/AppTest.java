@@ -197,20 +197,35 @@ public class AppTest
 	
 	@SuppressWarnings("deprecation")
 	@Test
-	public void arbolBinarioInsertarNodo() {
+	public void arbolBinarioInsertarNodoDer() {
 		// Arrange
-		Nodo nodoRaiz = Nodo.crear(null, 1, "valor1");;
-		Nodo nodoHijo = null;
+		Nodo nodoRaiz = Nodo.crear(null, 1, "valor1");
 		
 		// Act
-		nodoRaiz = Nodo.crear(nodoHijo, 2, "valor2");
+		Nodo.insertar(nodoRaiz, 2, "valor2");
 		
 		// Assert
 		Assert.assertTrue( nodoRaiz.getNodoDer() != null );
 		Assert.assertTrue( nodoRaiz.getNodoDer().getRaiz() == 2 ); 
-		Assert.assertTrue( nodoRaiz.getNodoDer().getContenido().equalsIgnoreCase("valor") );
+		Assert.assertTrue( nodoRaiz.getNodoDer().getContenido().equalsIgnoreCase("valor2") );
 	}
 	
+	@SuppressWarnings("deprecation")
+	@Test
+	public void arbolBinarioInsertarNodoIzq() {
+		// Arrange
+		Nodo nodoRaiz = Nodo.crear(null, 2, "valor2");
+		
+		// Act
+		Nodo.insertar(nodoRaiz, 1, "valor1");
+		
+		// Assert
+		Assert.assertTrue( nodoRaiz.getNodoIzq() != null );
+		Assert.assertTrue( nodoRaiz.getNodoIzq().getRaiz() == 1 ); 
+		Assert.assertTrue( nodoRaiz.getNodoIzq().getContenido().equalsIgnoreCase("valor1") );
+	}
+	
+	// TODO
 	@Test
 	@Ignore
 	public void arbolBinarioBuscar() {
