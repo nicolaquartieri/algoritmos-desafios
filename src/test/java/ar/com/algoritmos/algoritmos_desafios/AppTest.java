@@ -225,17 +225,34 @@ public class AppTest
 		Assert.assertTrue( nodoRaiz.getNodoIzq().getContenido().equalsIgnoreCase("valor1") );
 	}
 	
-	// TODO
+	@SuppressWarnings("deprecation")
 	@Test
-	@Ignore
-	public void arbolBinarioBuscar() {
+	public void arbolBinarioBuscarEnRaiz() {
 		// Arrange
+		Nodo nodoRaiz = Nodo.crear(null, 2, "valor2");
 		
 		// Act
+		String valor = nodoRaiz.buscar(2);
 		
 		// Assert
+		Assert.assertTrue(valor.equalsIgnoreCase("valor2"));
 	}
 	
+	@SuppressWarnings("deprecation")
+	@Test
+	public void arbolBinarioBuscarEnHijo() {
+		// Arrange
+		Nodo nodoRaiz = Nodo.crear(null, 2, "valor2");
+		Nodo.insertar(nodoRaiz, 1, "valor1");
+		Nodo.insertar(nodoRaiz, 3, "valor3");
+		
+		// Act
+		String valor = nodoRaiz.buscar(3);
+		
+		// Assert
+		Assert.assertTrue(valor.equalsIgnoreCase("valor3"));
+	}
+
 	@Test
 	@Ignore
 	public void test() {
