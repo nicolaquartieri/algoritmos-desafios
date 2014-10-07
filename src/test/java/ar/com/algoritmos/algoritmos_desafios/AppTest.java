@@ -21,9 +21,9 @@ import ar.com.algoritmos.ListNode;
 import ar.com.algoritmos.Node;
 import ar.com.algoritmos.Numeros;
 import ar.com.algoritmos.Numeros.Change;
-import ar.com.algoritmos.algoritmos.Nodo;
 import ar.com.algoritmos.Primos;
 import ar.com.algoritmos.Stuff;
+import ar.com.algoritmos.algoritmos.arbol.Nodo;
 
 /**
  * Unit test for simple App.
