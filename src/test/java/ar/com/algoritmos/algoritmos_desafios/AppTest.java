@@ -4,34 +4,29 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
+import ar.com.algoritmos.*;
+import ar.com.algoritmos.compare.StudentComparison;
+import ar.com.algoritmos.consumer_producer.Consumer;
+import ar.com.algoritmos.consumer_producer.Producer;
 import junit.framework.Assert;
 
 import org.junit.Ignore;
 import org.junit.Test;
 
-import ar.com.algoritmos.Capicua;
-import ar.com.algoritmos.Colleciones;
-import ar.com.algoritmos.ListNode;
-import ar.com.algoritmos.Node;
-import ar.com.algoritmos.Numeros;
 import ar.com.algoritmos.Numeros.Change;
-import ar.com.algoritmos.Primos;
-import ar.com.algoritmos.Stuff;
 import ar.com.algoritmos.algoritmos.arbol.Nodo;
 
 /**
  * Unit test for simple App.
  */
-public class AppTest 
-{
+public class AppTest {
+
 	@Test
-    public void esPrimoTest() {		
+    public void esPrimoTest() {
 		boolean resultado = false;
 		
 		resultado = Primos.isPrimo(3);
@@ -254,12 +249,110 @@ public class AppTest
 	}
 
 	@Test
+	public void testReverseSort() {
+		// Arrange
+		Comparator<Integer> reverseComparator = Collections.reverseOrder();
+		List<Integer> list = new ArrayList<Integer>();
+		list.add(1);list.add(3);list.add(2);list.add(10);
+
+		// Act
+		Collections.sort(list, reverseComparator);
+
+		// Assert
+		assertTrue(list.get(0) == 10);
+		assertTrue(list.get(1) == 3);
+		assertTrue(list.get(2) == 2);
+		assertTrue(list.get(3) == 1);
+	}
+
+	@Test
+	public void testAscSort() {
+		// Arrange
+		List<Integer> list = new ArrayList<Integer>();
+		list.add(1);list.add(3);list.add(2);list.add(10);
+
+		// Act
+		Collections.sort(list);
+
+		// Assert
+		assertTrue(list.get(0) == 1);
+		assertTrue(list.get(1) == 2);
+		assertTrue(list.get(2) == 3);
+		assertTrue(list.get(3) == 10);
+	}
+
+	@Test
+	public void testComparator() {
+		// Arrange
+		Student clare = new Student("clare", 16);
+		Student john = new Student("john", 15);
+
+		// Act
+		int resultAge = StudentComparison.StudentComparator.AGE.compare(clare, john);
+		int resultName = StudentComparison.StudentComparator.NAME.compare(clare, john);
+
+		// Assert
+		assertTrue(resultAge > 0);
+		assertTrue(resultName != 0);
+	}
+
+	@Test
+	public void testCreateTwoCriteriaComparators() {
+		// Arrange
+		Student clare = new Student("john", 15);
+		Student john = new Student("john", 15);
+
+		// Act
+		Comparator<Student> comparator = StudentComparison.createComparator(Arrays.asList(StudentComparison.StudentComparator.AGE,
+				StudentComparison.StudentComparator.NAME));
+		int result = comparator.compare(clare, john);
+
+		// Assert
+		assertTrue(result == 0);
+	}
+
+	@Test
+	public void testCreateTwoCriteriaWithSortOrderComparators() {
+		// Arrange
+		Student clare = new Student("clare", 15);
+		Student john = new Student("john", 16);
+		List<Student> list = new ArrayList<Student>();list.add(john);list.add(clare);
+		Comparator<Student> comparator = StudentComparison.createComparatorWithSortOrder(StudentComparison.SortOrder.ASC,
+				Arrays.asList(StudentComparison.StudentComparator.AGE,
+				StudentComparison.StudentComparator.NAME));
+
+		// Act
+		Collections.sort(list, comparator);
+
+		// Assert
+		assertTrue(list.get(0).equals(clare));
+		assertTrue(list.get(1).equals(john));
+	}
+
+	@Test
+	public void testConsumerProducer() {
+		// Arrange
+		BlockingQueue<Integer> queue = new LinkedBlockingQueue<Integer>();
+		Producer producer = new Producer(queue);
+		Consumer consumer1 = new Consumer("consumer1", queue);
+		Consumer consumer2 = new Consumer("consumer2", queue);
+
+		// Act
+		new Thread(consumer1).start();
+		new Thread(consumer2).start();
+		new Thread(producer).start();
+
+		// Assert
+		assertTrue(true);
+	}
+
+	@Test
 	@Ignore
 	public void test() {
 		// Arrange
-		
+
 		// Act
-		
-		// Assert		
+
+		// Assert
 	}
 }
