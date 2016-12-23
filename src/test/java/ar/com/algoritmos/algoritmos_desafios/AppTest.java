@@ -1,9 +1,5 @@
 package ar.com.algoritmos.algoritmos_desafios;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-
 import java.util.*;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -19,6 +15,8 @@ import org.junit.Test;
 
 import ar.com.algoritmos.Numeros.Change;
 import ar.com.algoritmos.algoritmos.arbol.Nodo;
+
+import static org.junit.Assert.*;
 
 /**
  * Unit test for simple App.
@@ -114,7 +112,21 @@ public class AppTest {
 		
 		assertTrue(intersection.contains(2));		
 	}
-	
+
+	@Test
+	public void duplicatesRemove() {
+		// Arrange.
+		Integer[] list = {5, 3, 8, 5, 0, 1, 6};
+		Integer[] expected = {5, 3, 8, 0, 1, 6};
+		Integer[] result;
+
+		// Act.
+		result = Colleciones.duplicatesRemove(list);
+
+		// Assert.
+		assertArrayEquals(expected, result);
+	}
+
 	@Test
 	@Ignore
 	public void reverseList() {
