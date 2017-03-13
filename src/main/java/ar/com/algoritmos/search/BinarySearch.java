@@ -2,6 +2,7 @@ package ar.com.algoritmos.search;
 
 public class BinarySearch {
 
+    // Iterative method.
     public static int binarySearch(int[] vector, int key) {
         Integer index = vector.length;
         int low = 0;  //points to first occupied cell in array.
@@ -25,6 +26,7 @@ public class BinarySearch {
         }
     }
 
+    // Recursive methods:
     public static int binarySearchRecursive(int[] a, int target) {
         return binarySearch(a, 0, a.length - 1, target);
     }
