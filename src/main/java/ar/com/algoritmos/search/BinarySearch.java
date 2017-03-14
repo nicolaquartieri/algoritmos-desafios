@@ -1,5 +1,12 @@
 package ar.com.algoritmos.search;
 
+/**
+ * Binary Search Algorithm. Remember that vectors elements should be already sorted!
+ * How many steps ? (if n es number of elements)
+ * Best: O(1)
+ * Average: O(log n)
+ * Worst: O(log n)
+ */
 public class BinarySearch {
 
     // Iterative method.

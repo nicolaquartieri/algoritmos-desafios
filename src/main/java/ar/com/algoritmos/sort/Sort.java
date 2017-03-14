@@ -1,6 +1,40 @@
 package ar.com.algoritmos.sort;
 
+/**
+ * Quick Sort Algorithm.
+ * 1. Choose a Pivot.
+ * 2. Reorder de array so all the element with values less than the pivot come before the pivot and than the pivot after
+ * this one. (with the same values stay in the same place)
+ * 3. Apply the same steps for the sub-arrays of elements.
+ *
+ * How many steps ? (if n es number of elements)
+ * Best: O(1)
+ * Average: O(n * log n)
+ * Worst: O(n^2)
+ *
+ * Merge Sort Algorithm.
+ * 1. Divide the unsorted list into n sublists, each containing 1 element (a list of 1 element is considered sorted).
+ * 2. Repeatedly merge sublists to produce new sorted sublists until there is only 1 sublist remaining.
+ * This will be the sorted list.
+ *
+ * How many steps ? (if n es number of elements)
+ * Best: O(n * log n)
+ * Average: O(n * log n)
+ * Worst: O(n * log n)
+ */
 public class Sort {
+
+    /**
+     * Swap elements between postitions.
+     * @param vector The array.
+     * @param pos1 The position 1.
+     * @param pos2 The position 2.
+     */
+    private static void swap(int[] vector, int pos1, int pos2) {
+        int temp = vector[pos1];
+        vector[pos1] = vector[pos2];
+        vector[pos2] = temp;
+    }
 
     // Bubble Sort.
     public static void bubbleSort(int[] vector) {
@@ -11,12 +45,6 @@ public class Sort {
             for (innner = 0; innner < outer; innner++) // inner loop (in forward direction)
                 if (vector[innner] > vector[innner + 1]) // out of order?
                     swap(vector, innner, innner + 1); // swap them
-    }
-
-    private static void swap(int[] vector, int pos1, int pos2) {
-        int temp = vector[pos1];
-        vector[pos1] = vector[pos2];
-        vector[pos2] = temp;
     }
     // Bubble Sort.
 
