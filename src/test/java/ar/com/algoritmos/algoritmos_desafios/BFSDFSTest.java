@@ -6,7 +6,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class DFSTest {
+public class BFSDFSTest {
 
     //Create the graph.
     GraphMatrix g = new GraphMatrix();
@@ -37,6 +37,19 @@ public class DFSTest {
         g.connectNode(B, E);
         g.connectNode(B, F);
         g.connectNode(C, F);
+    }
+
+    @Test
+    public void bfsBasicTraverseTest() {
+        //Arrange
+        String[] expected = {"A", "B", "C", "D", "E", "F"};
+        // In setup() method.
+
+        //Act
+        String[] result = g.bfs();
+
+        //Assert
+        Assert.assertArrayEquals(expected, result);
     }
 
     @Test
