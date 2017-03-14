@@ -48,49 +48,30 @@ public class GraphMatrix {
         return null;
     }
 
-    //BFS traversal of a tree is performed by the bfs() function
-    public String[] bfs() {
-        List<String> result = new ArrayList<>();
-        //BFS uses Queue data structure
-        Queue queue = new LinkedList();
-        queue.add(this.rootNode);
-        printNode(this.rootNode);
-        rootNode.visited=true;
-
-        result.add(this.rootNode.label);
-
-        while(!queue.isEmpty()) {
-            Node n = (Node)queue.remove();
-            Node child;
-            while((child = getUnvisitedChildNode(n)) != null) {
-                child.visited = true;
-                printNode(child);
-                result.add(child.label);
-                queue.add(child);
-            }
-        }
-        //Clear visited property of nodes
-        clearNodes();
-
-        return result.toArray(new String[0]);
-    }
-
-    //DFS traversal of a tree is performed by the dfs() function
+    /** DFS traversal of a tree is performed by the dfs() function
+     * 1. Push the root {@link Node} into the {@link Stack}
+     * 2. Loop until the {@link Stack} is empty.
+     * 3. Peek the {@link Node} of the {@link Stack}.
+     * 4. If the peeked {@link Node} has unvisited child nodes, mark the child node as visited and push it on the {@link Stack}.
+     * 5. If the {@link Node} doesn't have any unvisited child nodes pop the {@link Node} from the {@link Stack}.
+     *
+     * @return The list of visited {@link Node}.
+     */
     public String[] dfs() {
         List<String> result = new ArrayList<>();
         //DFS uses Stack data structure
         Stack stack = new Stack<Node>();
         stack.push(this.rootNode);
-        rootNode.visited=true;
+        rootNode.visited = true;
         printNode(rootNode);
 
         result.add(this.rootNode.label);
 
-        while(!stack.isEmpty()) {
-            Node n = (Node)stack.peek();
-            Node child = getUnvisitedChildNode(n);
-            if(child != null) {
-                child.visited=true;
+        while (!stack.isEmpty()) {
+            Node nodePeek = (Node)stack.peek();
+            Node child = getUnvisitedChildNode(nodePeek);
+            if (child != null) {
+                child.visited = true;
                 printNode(child);
                 result.add(child.label);
                 stack.push(child);
@@ -104,11 +85,46 @@ public class GraphMatrix {
         return result.toArray(new String[0]);
     }
 
+    /**
+     * BFS traversal of a tree is performed by the bfs() function
+     * 1. Push the root {@link Node} into the Queue.
+     * 2. Loop until the Queue is empty.
+     * 3. Remove the {@link Node} from the Queue.
+     * 4. If the removed {@link Node} has unvisited child's mark as visited and insert the unvisited {@link Node} in the Queue.
+     *
+     * @return The list of visited {@link Node}.
+     */
+    public String[] bfs() {
+        List<String> result = new ArrayList<>();
+        //BFS uses Queue data structure
+        Queue queue = new LinkedList();
+        queue.add(this.rootNode);
+        printNode(this.rootNode);
+        rootNode.visited = true;
+
+        result.add(this.rootNode.label);
+
+        while (!queue.isEmpty()) {
+            Node removedNode = (Node)queue.remove();
+            Node child;
+            while ((child = getUnvisitedChildNode(removedNode)) != null) {
+                child.visited = true;
+                printNode(child);
+                result.add(child.label);
+                queue.add(child);
+            }
+        }
+        //Clear visited property of nodes
+        clearNodes();
+
+        return result.toArray(new String[0]);
+    }
+
     //Utility methods for clearing visited property of node
     private void clearNodes() {
         int i = 0;
 
-        while(i < size) {
+        while (i < size) {
             Node n = nodes.get(i);
             n.visited = false;
             i++;
