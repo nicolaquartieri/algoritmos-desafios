@@ -47,11 +47,13 @@ public class Node {
     }
 
     public void print() {
-        if (left == null) {
+        if (left != null) {
             left.print();
         }
+
         System.out.println(data);
-        if (right == null) {
+
+        if (right != null) {
             right.print();
         }
     }
