@@ -24,7 +24,7 @@ public class GraphMatrix {
 
     //This method will be called to make connect two nodes
     public void connectNode(Node start, Node end) {
-        if(adjMatrix == null) {
+        if (adjMatrix == null) {
             size = nodes.size();
             adjMatrix = new int[size][size];
         }
@@ -35,12 +35,41 @@ public class GraphMatrix {
         adjMatrix[endIndex][startIndex] = 1;
     }
 
+    //This method will be called to make connect two nodes with edge value.
+    public void connectNodeWithEdge(Node start, Node end, int edgeValue) {
+        if (adjMatrix == null) {
+            size = nodes.size();
+            adjMatrix = new int[size][size];
+        }
+
+        int startIndex = nodes.indexOf(start);
+        int endIndex = nodes.indexOf(end);
+        adjMatrix[startIndex][endIndex] = edgeValue;
+        adjMatrix[endIndex][startIndex] = edgeValue;
+    }
+
+    private int getEdgeValue(Node start, Node end) {
+        if (adjMatrix == null) {
+            size = nodes.size();
+            adjMatrix = new int[size][size];
+
+            return 0;
+        } else {
+            int startIndex = nodes.indexOf(start);
+            int endIndex = nodes.indexOf(end);
+
+//            System.out.println(start.label + ":" + end.label + " : " + adjMatrix[startIndex][endIndex]);
+
+            return adjMatrix[startIndex][endIndex];
+        }
+    }
+
     private Node getUnvisitedChildNode(Node n) {
         int index = nodes.indexOf(n);
         int j = 0;
 
-        while(j < size) {
-            if(adjMatrix[index][j] == 1 && !nodes.get(j).visited) {
+        while (j < size) {
+            if (adjMatrix[index][j] != 0 && !nodes.get(j).visited) {
                 return nodes.get(j);
             }
             j++;
@@ -134,5 +163,37 @@ public class GraphMatrix {
     //Utility methods for printing the node's label
     private void printNode(Node n) {
         System.out.print(n.label+" ");
+    }
+
+    public Integer[] dfsShortestPath() {
+        List<Integer> result = new ArrayList<>();
+        //DFS uses Stack data structure
+        Stack stack = new Stack<Node>();
+        stack.push(this.rootNode);
+        rootNode.visited = true;
+
+        int sum = 0;
+        while (!stack.isEmpty()) {
+            Node nodePeek = (Node)stack.peek();
+            Node child = getUnvisitedChildNode(nodePeek);
+            if (child != null) {
+                child.visited = true;
+                sum = sum + getEdgeValue(nodePeek, child);
+                stack.push(child);
+            } else {
+                stack.pop();
+                if (sum != 0) {
+                    result.add(sum);
+                    System.out.println(sum + " ");
+                }
+                sum = 0;
+            }
+        }
+        //Clear visited property of nodes
+        clearNodes();
+
+        Integer[] resultArray = result.toArray(new Integer[0]);
+        Arrays.sort(resultArray);
+        return resultArray;
     }
 }

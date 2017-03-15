@@ -18,7 +18,13 @@ public class TreeGrapTest {
         rootNode.insert(99);
         rootNode.insert(8);
         rootNode.insert(5);
-        rootNode.insert(6);
+        rootNode.insert(2);
+
+        //          7
+        //         / \
+        //        3   12
+        //       /\   /\
+        //      2  5 8  99
     }
 
     @Test
@@ -33,7 +39,7 @@ public class TreeGrapTest {
         //Assert
         Assert.assertTrue(rootNode.contains(3));
         Assert.assertTrue(rootNode.contains(5));
-        Assert.assertTrue(rootNode.contains(6));
+        Assert.assertTrue(rootNode.contains(2));
         Assert.assertTrue(rootNode.contains(8));
         Assert.assertTrue(rootNode.contains(8));
         Assert.assertTrue(rootNode.contains(7));

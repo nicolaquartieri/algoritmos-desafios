@@ -6,7 +6,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class BFSDFSTest {
+public class BFSDFSShortestPathTest {
 
     //Create the graph.
     GraphMatrix g = new GraphMatrix();
@@ -20,6 +20,8 @@ public class BFSDFSTest {
         Node D = new Node("D");
         Node E = new Node("E");
         Node F = new Node("F");
+        Node G = new Node("G");
+        Node H = new Node("H");
 
         //Add nodes, create edges between nodes
         g.addNode(A);
@@ -28,26 +30,29 @@ public class BFSDFSTest {
         g.addNode(D);
         g.addNode(E);
         g.addNode(F);
-        g.setRootNode(A);
+        g.addNode(G);
+        g.addNode(H);
+        g.setRootNode(B);
 
-        g.connectNode(A, B);
-        g.connectNode(A, C);
-        g.connectNode(A, D);
+        g.connectNodeWithEdge(A, B, 6);
+//        g.connectNodeWithEdge(A, G, 1);
+        g.connectNodeWithEdge(A, D, 8);
 
-        g.connectNode(B, E);
-        g.connectNode(B, F);
-        g.connectNode(C, F);
-//           F
-//           |
-//        A--B--E
-//        |\
-//     F--C D
+        g.connectNodeWithEdge(B, E, 1);
+        g.connectNodeWithEdge(B, F, 4);
+
+        g.connectNodeWithEdge(C, F, 10);
+        g.connectNodeWithEdge(C, H, 7);
+
+//        g.connectNodeWithEdge(D, F, 3);
+
+        g.connectNodeWithEdge(G, E, 9);
     }
 
     @Test
     public void bfsBasicTraverseTest() {
         //Arrange
-        String[] expected = {"A", "B", "C", "D", "E", "F"};
+        String[] expected = {"A", "B", "D", "G", "E", "F", "C", "H"};
         // In setup() method.
 
         //Act
@@ -60,13 +65,28 @@ public class BFSDFSTest {
     @Test
     public void dfsBasicTraverseTest() {
         //Arrange
-        String[] expected = {"A", "B", "E", "F", "C", "D"};
+        String[] expected = {"A", "B", "E", "G", "F", "C", "H", "D"};
         // In setup() method.
 
         //Act
         String[] result = g.dfs();
 
         //Assert
+        Assert.assertArrayEquals(expected, result);
+    }
+
+    @Test
+    public void dfsShortestPath() {
+        //Arrange
+        Integer[] expected = {10, 14, 21};
+
+        //Act
+        Integer[] result = g.dfsShortestPath();
+
+        //Assert
+//        B-E-G   : 10
+//        B-A-D   : 14
+//        B-F-C-H : 21
         Assert.assertArrayEquals(expected, result);
     }
 }
