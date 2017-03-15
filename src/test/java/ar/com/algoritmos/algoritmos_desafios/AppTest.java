@@ -128,6 +128,32 @@ public class AppTest {
 	}
 
 	@Test
+	public void duplicatesDetectFalse() {
+		// Arrange.
+		boolean result = false;
+		Integer[] list = {5, 3, 8, 2, 0, 1, 6};
+
+		// Act.
+		result = Colleciones.duplicatesDetect(list);
+
+		// Assert.
+		assertFalse(result);
+	}
+
+	@Test
+	public void duplicatesDetectTrue() {
+		// Arrange.
+		boolean result = false;
+		Integer[] list = {5, 3, 8, 5, 0, 1, 6};
+
+		// Act.
+		result = Colleciones.duplicatesDetect(list);
+
+		// Assert.
+		assertTrue(result);
+	}
+
+	@Test
 	@Ignore
 	public void reverseList() {
 		// Terminar !!
