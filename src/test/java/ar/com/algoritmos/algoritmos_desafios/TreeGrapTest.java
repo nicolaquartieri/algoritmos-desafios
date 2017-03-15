@@ -45,6 +45,4 @@ public class TreeGrapTest {
         Assert.assertTrue(rootNode.contains(7));
         Assert.assertTrue(rootNode.contains(99));
     }
-
-
 }

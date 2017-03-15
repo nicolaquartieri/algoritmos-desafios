@@ -12,6 +12,10 @@ public class Node {
         this.data = data;
     }
 
+    /**
+     * Insert a new value. O(log n)
+     * @param value The value to insert.
+     */
     public void insert(int value) {
         if (value <= data) {
             if (left == null) {
@@ -28,6 +32,11 @@ public class Node {
         }
     }
 
+    /**
+     * Check if a value exist. 0(log n)
+     * @param value The value to check.
+     * @return
+     */
     public boolean contains(int value) {
         if (value == data) {
             return true;
