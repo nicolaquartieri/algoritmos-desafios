@@ -35,7 +35,6 @@ public class BFSDFSShortestPathTest {
         g.setRootNode(B);
 
         g.connectNodeWithEdge(A, B, 6);
-//        g.connectNodeWithEdge(A, G, 1);
         g.connectNodeWithEdge(A, D, 8);
 
         g.connectNodeWithEdge(B, E, 1);
@@ -44,35 +43,12 @@ public class BFSDFSShortestPathTest {
         g.connectNodeWithEdge(C, F, 10);
         g.connectNodeWithEdge(C, H, 7);
 
-//        g.connectNodeWithEdge(D, F, 3);
-
         g.connectNodeWithEdge(G, E, 9);
-    }
-
-    @Test
-    public void bfsBasicTraverseTest() {
-        //Arrange
-        String[] expected = {"A", "B", "D", "G", "E", "F", "C", "H"};
-        // In setup() method.
-
-        //Act
-        String[] result = g.bfs();
-
-        //Assert
-        Assert.assertArrayEquals(expected, result);
-    }
-
-    @Test
-    public void dfsBasicTraverseTest() {
-        //Arrange
-        String[] expected = {"A", "B", "E", "G", "F", "C", "H", "D"};
-        // In setup() method.
-
-        //Act
-        String[] result = g.dfs();
-
-        //Assert
-        Assert.assertArrayEquals(expected, result);
+//           F--C--H
+//           |
+//        A--B--E--G
+//        |
+//        D
     }
 
     @Test

@@ -15,7 +15,7 @@ public class SearchTest {
         int result = BinarySearch.binarySearch(list, 7);
 
         //Assert.
-        Assert.assertEquals(7, result);
+        Assert.assertEquals(5, result);
     }
 
     @Test
@@ -27,6 +27,6 @@ public class SearchTest {
         int result = BinarySearch.binarySearchRecursive(list, 7);
 
         //Assert.
-        Assert.assertEquals(7, result);
+        Assert.assertEquals(5, result);
     }
 }

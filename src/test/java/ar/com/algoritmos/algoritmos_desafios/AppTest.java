@@ -8,13 +8,11 @@ import ar.com.algoritmos.*;
 import ar.com.algoritmos.compare.StudentComparison;
 import ar.com.algoritmos.consumer_producer.Consumer;
 import ar.com.algoritmos.consumer_producer.Producer;
-import junit.framework.Assert;
 
 import org.junit.Ignore;
 import org.junit.Test;
 
 import ar.com.algoritmos.Numeros.Change;
-import ar.com.algoritmos.algoritmos.arbol.Nodo;
 
 import static org.junit.Assert.*;
 
@@ -84,13 +82,6 @@ public class AppTest {
 	}
 	
 	@Test
-	@Ignore
-	public void getAverageNode() {
-		// Terminar !!
-		assertEquals(2, 2);
-	}
-	
-	@Test
 	public void getSumOfNumbers() {
 		String s = "12 some text 3  8";
 		int resultado = 0;
@@ -116,8 +107,8 @@ public class AppTest {
 	@Test
 	public void duplicatesRemove() {
 		// Arrange.
-		Integer[] list = {5, 3, 8, 5, 0, 1, 6};
-		Integer[] expected = {5, 3, 8, 0, 1, 6};
+		Integer[] list =     {5, 3, 8, 5, 0, 1, 6};
+		Integer[] expected = {0, 1, 3, 5, 6, 8};
 		Integer[] result;
 
 		// Act.
@@ -211,79 +202,6 @@ public class AppTest {
 		
 		// Assert
 		assertTrue(2 == resultado);
-	}
-	
-	@SuppressWarnings("deprecation")
-	@Test
-	public void arbolBinarioCrearNodo() {
-		// Arrange
-		Nodo nodo = null;
-		
-		// Act
-		nodo = Nodo.crear(null, 1, "valor");
-		
-		// Assert
-		Assert.assertTrue( nodo != null ); 
-		Assert.assertTrue( nodo.getRaiz() == 1 ); 
-		Assert.assertTrue( nodo.getContenido().equalsIgnoreCase("valor") );
-	}
-	
-	@SuppressWarnings("deprecation")
-	@Test
-	public void arbolBinarioInsertarNodoDer() {
-		// Arrange
-		Nodo nodoRaiz = Nodo.crear(null, 1, "valor1");
-		
-		// Act
-		Nodo.insertar(nodoRaiz, 2, "valor2");
-		
-		// Assert
-		Assert.assertTrue( nodoRaiz.getNodoDer() != null );
-		Assert.assertTrue( nodoRaiz.getNodoDer().getRaiz() == 2 ); 
-		Assert.assertTrue( nodoRaiz.getNodoDer().getContenido().equalsIgnoreCase("valor2") );
-	}
-	
-	@SuppressWarnings("deprecation")
-	@Test
-	public void arbolBinarioInsertarNodoIzq() {
-		// Arrange
-		Nodo nodoRaiz = Nodo.crear(null, 2, "valor2");
-		
-		// Act
-		Nodo.insertar(nodoRaiz, 1, "valor1");
-		
-		// Assert
-		Assert.assertTrue( nodoRaiz.getNodoIzq() != null );
-		Assert.assertTrue( nodoRaiz.getNodoIzq().getRaiz() == 1 ); 
-		Assert.assertTrue( nodoRaiz.getNodoIzq().getContenido().equalsIgnoreCase("valor1") );
-	}
-	
-	@SuppressWarnings("deprecation")
-	@Test
-	public void arbolBinarioBuscarEnRaiz() {
-		// Arrange
-		Nodo nodoRaiz = Nodo.crear(null, 2, "valor2");
-		
-		// Act
-		String valor = nodoRaiz.buscar(2);
-		
-		// Assert
-		Assert.assertTrue(valor.equalsIgnoreCase("valor2"));
-	}
-	
-	@SuppressWarnings("deprecation")
-	@Test
-	public void arbolBinarioBuscarEnHijo() {
-		// Arrange
-		Nodo nodoRaiz = Nodo.crear(null, 2, "valor2");
-		Nodo.insertar(nodoRaiz, 1, "valor1");
-		Nodo.insertar(nodoRaiz, 3, "valor3");
-		
-		// Act
-		String valor = nodoRaiz.buscar(3);
-		
-		// Assert
-		Assert.assertTrue(valor.equalsIgnoreCase("valor3"));
 	}
 
 	@Test
@@ -384,13 +302,4 @@ public class AppTest {
 		assertTrue(true);
 	}
 
-	@Test
-	@Ignore
-	public void test() {
-		// Arrange
-
-		// Act
-
-		// Assert
-	}
 }

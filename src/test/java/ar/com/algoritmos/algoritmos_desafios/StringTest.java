@@ -27,16 +27,7 @@ public class StringTest {
         StringBuffer palindrome = actual.reverse();
 
         // Assert
-        Assert.assertTrue(("rotores".equalsIgnoreCase(palindrome.toString())));
+        Assert.assertTrue(("serotor".equalsIgnoreCase(palindrome.toString())));
     }
 
-    @Test
-    @Ignore
-    public void test() {
-        // Arrange
-
-        // Act
-
-        // Assert
-    }
 }

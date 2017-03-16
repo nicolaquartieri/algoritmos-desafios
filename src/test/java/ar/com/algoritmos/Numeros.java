@@ -7,15 +7,6 @@ import java.util.Set;
 
 
 public class Numeros {
-
-	public static interface Node {
-	    int getValue();
-	    List<Node> getChildren();
-	}
-	
-	public static double getAverage(Node root) {
-		return 0;		
-	}
 	
 	public static int getClosestToZero(int[] a) {		
 		Arrays.sort(a); 			
