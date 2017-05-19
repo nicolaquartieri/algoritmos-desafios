@@ -26,7 +26,7 @@ public class AppTest {
 		boolean resultado = false;
 		
 		resultado = Primos.isPrimo(3);
-		
+
 		assertTrue(resultado);
     }
 	
@@ -55,7 +55,7 @@ public class AppTest {
 	
 	@Test
 	public void reverseWord() {
-		String palabra = "hola mundo";		
+		String palabra = "hola mundo";
 		
 		palabra = Capicua.reverse(palabra);
 		
@@ -64,7 +64,7 @@ public class AppTest {
 	
 	@Test
 	public void reverseStringStack() {
-		String palabra = "hola mundo";		
+		String palabra = "hola mundo";
 		
 		palabra = Capicua.reverseStack(palabra);
 		
@@ -93,22 +93,22 @@ public class AppTest {
 	
 	@Test 
 	public void getIntersection() {
-		Set<Object> a = new HashSet<Object>();
+		Set<Object> a = new HashSet<>();
 		a.add(1);a.add(2);a.add(3);
-		Set<Object> b = new HashSet<Object>();
+		Set<Object> b = new HashSet<>();
 		b.add(4);b.add(2);b.add(5);
-		Set<Object> intersection = new HashSet<Object>();
+		Set<Object> intersection;
 		
 		intersection = Numeros.getIntersection(a, b);
 		
-		assertTrue(intersection.contains(2));		
+		assertTrue(intersection.contains(2));
 	}
 
 	@Test
 	public void duplicatesRemove() {
 		// Arrange.
 		Integer[] list =     {5, 3, 8, 5, 0, 1, 6};
-		Integer[] expected = {0, 1, 3, 5, 6, 8};
+		Integer[] expected = {0, 1, 3, 5, 6, 8}; // The result returned is in the natural order.
 		Integer[] result;
 
 		// Act.
@@ -149,7 +149,7 @@ public class AppTest {
 	public void reverseList() {
 		// Terminar !!
 		ListNode root = new Node(1);
-		ListNode node2 = new Node(2);		
+		ListNode node2 = new Node(2);
 		ListNode node3 = new Node(3);
 		node2.setNext(node3);
 		root.setNext(node2);
@@ -302,4 +302,25 @@ public class AppTest {
 		assertTrue(true);
 	}
 
+	@Test
+	public void algo() {
+		Map<String, Integer> map = new HashMap<>();
+		Map<String, Integer> mapExpected = new HashMap<>();
+		mapExpected.put("1", 1);
+		mapExpected.put("2", 2);
+		mapExpected.put("3", 3);
+		mapExpected.put("3", 3);
+
+		map.put("1", 1);
+		map.put("2", 2);
+		map.put("3", 3);
+//		map.put("4", 4);
+
+		assertTrue(map.equals(mapExpected));
+	}
+
+	@Test
+	public void algoas() {
+		
+	}
 }

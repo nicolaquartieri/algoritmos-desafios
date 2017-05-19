@@ -34,7 +34,7 @@ public class Colleciones {
 	/**
 	 * Remove duplicated elements from the array.
 	 * @param list The array.
-	 * @return A new array with no duplications and ir asc order.
+	 * @return A new array with no duplications and ir natural order.
 	 */
 	public static Integer[] duplicatesRemove(Integer[] list) {
 		HashSet<Integer> hashSet = new HashSet<>();
