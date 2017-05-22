@@ -8,10 +8,17 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 import static org.powermock.api.mockito.PowerMockito.*;
 
+/**
+ * The division of work between the two is that Mockito is kind of good for all the standard cases
+ * while PowerMock is needed for the harder cases. That includes for example mocking static and private methods.
+ *
+ * @PrepareForTest it is used to know the list of classes that needs to be mocked must.
+ * EX: @PrepareForTest({StaticService.class})
+ */
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(fullyQualifiedNames = "ar.com.algoritmos.powermock.*")
 public class Powermocktest {
@@ -85,7 +92,32 @@ public class Powermocktest {
     }
 
     @Test
-    public void simplePrivateMockTest() throws Exception {
-        when()
+    public void simpleFinalMethodsMockTest() throws Exception {
+        // Instance and spy them.
+        SimpleClass simpleClass = new SimpleClass();
+        SimpleClass simpleClassMock = spy(simpleClass);
+        // Set the expectations.
+        when(simpleClassMock.helloWorld()).thenReturn("Hello Dude!");
+        String returnValue = simpleClassMock.helloWorld();
+        // Verify.
+        verify(simpleClassMock).helloWorld();
+        // Assert.
+        Assert.assertEquals(returnValue, "Hello Dude!");
+    }
+
+    @Test
+    public void simplePrivateMethodsMockTest() throws Exception {
+        // Instance and spy them. A similar process is applied to the private method. The main difference is that we
+        // cannot directly invoke this method from the test case. Basically, a private method is to be called by other
+        // ones from the same class.
+        SimpleClass simpleClass = new SimpleClass();
+        SimpleClass simpleClassMock = spy(simpleClass);
+        // Set the expectations.
+        PowerMockito.when(simpleClassMock, "thirdMethod").thenReturn("Hello Dude!");
+        String returnValue = simpleClassMock.thirdMethodCaller();
+        // Verify.
+        verifyPrivate(simpleClassMock).invoke("thirdMethod");
+        // Assert.
+        Assert.assertEquals(returnValue, "Hello Dude! thirdMethodCaller");
     }
 }

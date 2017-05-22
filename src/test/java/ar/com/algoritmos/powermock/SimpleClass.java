@@ -28,6 +28,6 @@ public class SimpleClass {
     }
 
     public String thirdMethodCaller() {
-        return thirdMethod();
+        return thirdMethod() + " thirdMethodCaller";
     }
 }
